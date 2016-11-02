@@ -5,8 +5,7 @@ import 'angular-material/angular-material.css';
 import root from './../imports/ui/layouts/root/root';
 import './main.css';
 
-//TODO: rename app
-var myApp = angular.module('template', [
+var myApp = angular.module('food-net', [
   angularMeteor,
   root.name,
 ]);
