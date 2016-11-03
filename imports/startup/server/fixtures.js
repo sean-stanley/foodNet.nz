@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(() => {
-  //TODO: change default user
   if (Meteor.users.find().count() === 0 ) {
     var id = Accounts.createUser({
         email: 'admin@foodnet.nz',
