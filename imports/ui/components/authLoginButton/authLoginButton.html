@@ -2,8 +2,8 @@
 <span ng-if="!authLoginButton.userActive">
   <md-menu md-offset="0 55">
     <!-- menu button -->
-    <md-button aria-label="login" class="md-icon-button" ng-click="$mdOpenMenu($event)" style="color:white;">
-      <md-icon style="color:white;">account_box</md-icon>
+    <md-button aria-label="login" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+      <md-icon style="color:black;">account_box</md-icon>
     </md-button>
     <!-- menu -->
     <md-menu-content width="4" style="height:210px;">
@@ -37,8 +37,8 @@
 <span ng-if="authLoginButton.userActive">
   <md-menu md-offset="0 55">
     <!-- menu button -->
-    <md-button aria-label="login" ng-click="$mdOpenMenu($event)" style="color:white;">
-      <md-icon style="color:white;">account_box</md-icon> {{authLoginButton.user.profile.name}}
+    <md-button aria-label="login" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+      <md-icon style="color:black;">account_box</md-icon>
     </md-button>
     <!-- menu -->
     <md-menu-content width="4">

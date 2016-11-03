@@ -1,0 +1,17 @@
+<md-content layout="column" flex style="min-height:100vh;" align="center">
+  <header
+    title="Profile"
+    search-filter="profile.searchFilter"
+    search-active="profile.searchActive"
+    search-disabled="true">
+  </header>
+
+  <user-info user="profile.user"></user-info>
+  <user-associations user="profile.user"></user-associations>
+  <organisation-list
+    layout="row"
+    flex
+    search-filter="{}">
+  </organisation-list>
+  <user-skills user="profile.user"></user-skills>
+</md-content>

@@ -1,36 +1,61 @@
 <!-- top menu when large -->
-<md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links" hide-xs>
+<md-nav-bar
+  md-selected-nav-item="currentNavItem"
+  nav-bar-aria-label="navigation links"
+  hide-xs>
   <!-- pages -->
   <md-nav-item md-nav-click="header.goTo('home')" name="home">Home</md-nav-item>
+  <md-nav-item md-nav-click="header.goTo('profile')" name="profile" ng-if="header.userActive">My Profile</md-nav-item>
+  <md-nav-item md-nav-click="header.goTo('home')" name="home" ng-if="header.userActive">My Organisations</md-nav-item>
+  <md-nav-item md-nav-click="header.goTo('home')" name="home" ng-if="header.userActive">Messages</md-nav-item>
+  <md-nav-item md-nav-click="header.goTo('home')" name="home" ng-if="header.userActive">Bookmarks</md-nav-item>
+  <md-nav-item md-nav-click="header.goTo('home')" name="home" ng-if="header.userActive">Endorsements</md-nav-item>
   <span flex></span>
   <!-- log in button -->
-  <auth-login-button></auth-login-button>
+  <!--<auth-login-button></auth-login-button>-->
+  <md-button aria-label="login" class="md-icon-button" ng-click="header.searchActive = !header.searchActive; header.searchFilter = ''" ng-if="!header.searchDisabled">
+    <md-icon style="color:black;">{{header.searchActive ? 'close' : 'search'}}</md-icon>
+  </md-button>
 </md-nav-bar>
 
 <!-- side menu when small -->
-<md-toolbar class="md-hue-2" hide-gt-xs>
+<md-toolbar hide-gt-xs>
   <div class="md-toolbar-tools">
     <!-- menu button -->
     <md-button aria-label="login" class="md-icon-button" ng-click="header.toggle()">
-      <md-icon>menu</md-icon>
+      <md-icon style="color:black;">menu</md-icon>
     </md-button>
+    {{header.title}}
     <span flex></span>
     <!-- log in button -->
-    <auth-login-button></auth-login-button>
+    <!--<auth-login-button></auth-login-button>-->
+    <md-button aria-label="login" class="md-icon-button" ng-click="header.searchActive = !header.searchActive; header.searchFilter = ''" ng-if="!header.searchDisabled">
+      <md-icon style="color:black;">{{header.searchActive ? 'close' : 'search'}}</md-icon>
+    </md-button>
   </div>
 </md-toolbar>
+
+<search-bar
+  ng-if="header.searchActive"
+  search-filter="header.searchFilter">
+</search-bar>
 
 <md-sidenav
   class="md-sidenav-left"
   md-component-id="menu"
   md-whiteframe="4">
-  <md-toolbar class="md-theme-indigo">
-    <h1 class="md-toolbar-tools">Menu</h1>
-  </md-toolbar>
-  <md-content layout-padding>
+    <md-content layout-padding style="background:grey;" ng-if="header.userActive" align="left">
+      <user-avatar width="75"></user-avatar>
+      <br/>
+      <span style="color:white;">{{header.user.emails[0].address || ''}}</span>
+    </md-content>
     <md-list layout-align="space-around" layout="column">
       <!-- pages -->
-      <md-list-item ui-sref="home" ng-click="header.toggle()"><span>Home</span></md-list-item>
+      <md-list-item ui-sref="home" ng-click="header.toggle()"><span><md-icon>home</md-icon> Home</span></md-list-item>
+      <md-list-item ui-sref="profile" ng-click="header.toggle()"><span><md-icon>account_box</md-icon> My Profile</span></md-list-item>
+      <md-list-item ui-sref="home" ng-click="header.toggle()" ng-if="header.userActive"><span><md-icon>send</md-icon> My Organisations</span></md-list-item>
+      <md-list-item ui-sref="home" ng-click="header.toggle()" ng-if="header.userActive"><span><md-icon>forum</md-icon> Messages</span></md-list-item>
+      <md-list-item ui-sref="home" ng-click="header.toggle()" ng-if="header.userActive"><span><md-icon>bookmark</md-icon> Bookmarks</span></md-list-item>
+      <md-list-item ui-sref="home" ng-click="header.toggle()" ng-if="header.userActive"><span><md-icon>people</md-icon> Endorsements</span></md-list-item>
     </md-list>
-  </md-content>
 </md-sidenav>

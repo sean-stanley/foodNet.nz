@@ -1,7 +1,9 @@
 import angular from 'angular';
 
 import header from '../../components/header/header';
-import userCreate from '../../components/userCreate/userCreate';
+import promoSplash from '../../components/promoSplash/promoSplash';
+import searchCommon from '../../components/searchCommon/searchCommon';
+import organisationList from '../../components/organisationList/organisationList';
 
 import templateUrl from './home.html';
 
@@ -10,29 +12,18 @@ class homeController {
     'ngInject';
     $reactive(this).attach($scope);
 
-    //helpers
-    this.helpers({
-      user() {return Meteor.user();},
-      userActive() {
-        if(Meteor.user()){
-          if(!Meteor.user().profile.active){
-            console.log('Login Error: User Suspended');
-            Meteor.logout();
-            return false;
-          }
-          return true;
-        }else{
-          return false;
-        }
-      },
-    });
+    //set up scope variables
+    this.searchFilter = '';
+    this.searchActive = false;
   }
 }
 
 const name = 'home';
 export default angular.module(name, [
   header.name,
-  userCreate.name,
+  promoSplash.name,
+  searchCommon.name,
+  organisationList.name,
 ]).component(name, {
   templateUrl,
   controller: homeController,

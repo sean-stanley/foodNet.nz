@@ -1,5 +1,42 @@
-<md-content layout="column" flex style="min-height:100vh;">
-  <header></header>
-  <user-create ng-if="!home.userActive"></user-create>
-  <!-- home content __ ng-if="home.userActive" __ home content-->
+<md-content layout="column" flex style="min-height:100vh;" align="center">
+  <header
+    title="Food Map"
+    search-filter="home.searchFilter"
+    search-active="home.searchActive">
+  </header>
+
+  <promo-splash
+    text="Explore Northland's Food System"
+    ng-if="home.searchFilter === ''">
+  </promo-splash>
+
+  <search-common
+    layout="column"
+    search-filter="home.searchFilter"
+    search-active="home.searchActive"
+    ng-if="home.searchFilter === ''">
+  </search-common>
+
+  <organisation-list
+    layout="row"
+    flex
+    search-filter="home.searchFilter"
+    ng-if="home.searchFilter !== ''">
+  </organisation-list>
+
+  <h4 ng-if="home.searchFilter === ''">Newest Organisations</h4>
+  <organisation-list
+    layout="row"
+    search-filter="{}"
+    limit-to="2"
+    ng-if="home.searchFilter === ''">
+  </organisation-list>
+
+  <h4 ng-if="home.searchFilter === ''">Popular Organisations</h4>
+  <organisation-list
+    layout="row"
+    search-filter="{}"
+    limit-to="2"
+    ng-if="home.searchFilter === ''">
+  </organisation-list>
 </md-content>

@@ -1,0 +1,15 @@
+<md-content layout="column" flex style="min-height:100vh;" align="center">
+  <header
+    title="{{organisation.organisation.name}}"
+    search-disabled="true">
+  </header>
+
+  <md-tabs md-dynamic-height md-border-bottom>
+    <md-tab label="Info">
+      <organisation-dashboard-info organisation="organisation.organisation"></organisation-dashboard-info>
+    </md-tab>
+    <md-tab label="I/O">
+      <organisation-dashboard-i-o organisation="organisation.organisation"></organisation-dashboard-i-o>
+    </md-tab>
+  </md-tabs>
+</md-content>

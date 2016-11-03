@@ -3,6 +3,8 @@ import angular from 'angular';
 import { Meteor } from 'meteor/meteor';
 
 import authLoginButton from '../authLoginButton/authLoginButton';
+import searchBar from '../searchBar/searchBar';
+import userAvatar from '../userAvatar/userAvatar';
 
 import templateUrl from './header.html';
 
@@ -17,8 +19,7 @@ class headerController {
     //watch for state changes
     $scope.$watch($state.current.name, function(){
       $scope.currentNavItem =  $state.current.name;
-      console.log($scope.currentNavItem);
-    })
+    });
 
     $rootScope.$on('$stateChangeStart',
     function(event, toState, toParams, fromState, fromParams){
@@ -26,27 +27,18 @@ class headerController {
 
     });
 
-
-
     //toggle side menu
     this.toggle = () => {
       $mdSidenav('menu').toggle();
     };
 
-    //helpers
+    //helpers TODO: implement users properly when new database installed
     this.helpers({
-      user() {return Meteor.user();},
+      user() {
+        return {_id:"someId", emails:[{address:"admin@admin.co.nz"}]};
+      },
       userActive() {
-        if(Meteor.user()){
-          if(!Meteor.user().profile.active){
-            console.log('Login Error: User Suspended');
-            Meteor.logout();
-            return false;
-          }
-          return true;
-        }else{
-          return false;
-        }
+        return true;
       },
     });
   }
@@ -59,8 +51,16 @@ class headerController {
 const name = 'header';
 export default angular.module(name, [
   authLoginButton.name,
+  searchBar.name,
+  userAvatar.name,
 ]).component(name, {
   templateUrl,
   controller: headerController,
   controllerAs: name,
+  bindings: {
+    title: '@',
+    searchFilter: '=',
+    searchActive: '=',
+    searchDisabled: '<',
+  },
 });

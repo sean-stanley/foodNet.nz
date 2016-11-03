@@ -5,6 +5,8 @@ import uiRouter from 'angular-ui-router';
 
 //pages
 import home from '../home/home';
+import organisation from '../organisation/organisation';
+import profile from '../profile/profile';
 
 import templateUrl from './root.html';
 
@@ -16,6 +18,8 @@ export default angular.module(name, [
   ngMaterial,
   uiRouter,
   home.name,
+  organisation.name,
+  profile.name,
 ]).component(name, {
   templateUrl,
   controller: rootController,

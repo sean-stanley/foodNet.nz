@@ -1,0 +1,10 @@
+<md-card flex layout="column" style="outline:none;" align="left">
+  <md-card-content>
+    <h4>Skills</h4>
+    {{userSkills.seniorSkills(userSkills.user._id)}} Senior Skills<br/>
+    {{userSkills.intermediateSkills(userSkills.user._id)}} Intermediate Skills <br/>
+    {{userSkills.juniorSkills(userSkills.user._id)}} Junior Skills <br/>
+    {{userSkills.qualifications(userSkills.user._id)}} Qualifications <br/>
+  </md-card-content>
+  <skill-list user="userSkills.user"></skill-list>
+</md-card>
